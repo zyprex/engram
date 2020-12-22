@@ -3,19 +3,14 @@
 
 name = "Engram"
 license = "MIT"
-licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE"
-description = ""
-homepage = "http://example.com/"
-tags = []
-features = []
+licenselink = "https://github.com/zyprex/engram/blob/master/LICENSE"
+description = "a fast and beautiful theme with many colors schemes"
+homepage = "https://zyprex.vercel.app/"
+tags = ["colors","math","elegant","easy-use"]
+features = ["lazy-load","mermaid","katax"]
 min_version = "0.41.0"
 
 [author]
-  name = ""
-  homepage = ""
+  name = "zyprex"
+  homepage = "https://github.com/zyprex"
 
-# If porting an existing theme
-[original]
-  name = ""
-  homepage = ""
-  repo = ""
