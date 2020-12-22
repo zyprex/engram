@@ -1,0 +1,25 @@
+{{ define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end }}
+{{- define "main" -}}
+  {{ if .Content }}
+  {{- partial "shortcode_css.html" . -}}
+  <div id="page_content" class="pbox shadow">
+  {{ .Content }}
+  </div>
+  <script defer src="/js/page.js"></script>
+  {{- partial "shortcode_js.html" . -}}
+  {{ end }}
+  <br/>
+  <div class="pbox">
+  <ul>
+    {{- with .Site.RegularPages.Next . -}}
+    <li>next: <a href="{{.RelPermalink}}">{{ .Title }}</a></li>
+    {{- end -}}
+    {{- with .Site.RegularPages.Prev . -}}
+    <li>prev: <a href="{{.RelPermalink}}">{{ .Title }}</a></li>
+    {{- end -}}
+  </ul>
+  </div>
+  {{- if .Params.toc -}}
+  <div id="nav_toc" class="bbox">{{ .TableOfContents }}</div>
+  {{- end -}}
+{{- end -}}

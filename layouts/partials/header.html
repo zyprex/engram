@@ -1,0 +1,27 @@
+<header id="header" class="tc">
+{{if .IsHome }}
+  {{ with .OutputFormats.Get "RSS" }}
+  <a href="{{ .RelPermalink }}"><svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss" data-darkreader-inline-fill="" data-darkreader-inline-stroke="" style="--darkreader-inline-fill:none; --darkreader-inline-stroke:currentColor;"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path> <circle cx="5" cy="19" r="1"></circle></svg></a>
+  {{ end }}
+{{else if .IsNode}}
+  {{if eq .Kind "term"}}
+  <div>{{ .Type }}</div>
+  {{end}}
+  {{if eq .Kind "section"}}
+  <div>&bull; SECTION &bull;</div>
+  {{end}}
+  <div class="f-head">{{ .Title }}</div>
+{{else if .IsPage}}
+  <div class="f-head">{{ .Title }}</div>
+  <div class="">
+    {{ .Date.Format "2006/01/02 Mon 15:04" }}
+  </div>
+  <div class="">
+    {{- partial "index_taxo.html" . -}}
+  </div>
+  <div class="">
+    about {{ .WordCount }} Words
+  </div>
+  </div>
+{{end}}
+</header>

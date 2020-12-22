@@ -1,0 +1,20 @@
+<!DOCTYPE html><!-- https://gohugo.io/templates/base/#define-the-base-template -->
+<html>
+  {{- partial "head.html" . -}}
+  <!-- block can be overridden if need be in  -->
+  <title>{{- block "title" . }}{{ .Site.Title }}{{- end }}</title>
+  <body>
+    {{- block "header" . }}{{- partial "header.html" . -}}{{- end }}
+    <div id="content">
+      {{- block "main" . }}{{- end }}
+    </div>
+    {{- partialCached "nav_bottom.html" . -}}
+    {{- partialCached "nav_menu.html" . -}}
+    {{- partialCached "footer.html" . -}}
+    {{- partialCached "nav_flip.html" . -}}
+    <script defer src="/js/script.js"></script>
+    {{- with $.Site.Params.backgroundImage -}}
+    <script defer src="/js/bg.js"></script>
+    {{- end -}}
+  </body>
+</html>

@@ -1,0 +1,99 @@
+{{- if .HasShortcode "tooltip" -}}
+<script>
+/**
+  * Positions elem relative to anchor as said in position.
+  *
+  * @param {Node} anchor     Anchor element for positioning
+  * @param {string} position One of: top/right/bottom
+  * @param {Node} elem       Element to position
+  *
+  * Both elements: elem and anchor must be in the document
+  */
+function positionAt(anchor, position, elem) {
+  let anchorCoords = anchor.getBoundingClientRect();
+  switch (position) {
+    case "top":
+      elem.style.left = anchorCoords.left + "px";
+      elem.style.top = anchorCoords.top - elem.offsetHeight + "px";
+      break;
+    case "right":
+      elem.style.left = anchorCoords.left + anchor.offsetWidth + "px";
+      elem.style.top = anchorCoords.top + "px";
+      break;
+    case "bottom":
+      elem.style.left = anchorCoords.left + "px";
+      elem.style.top = anchorCoords.top + anchor.offsetHeight + "px";
+      break;
+  }
+}
+function showTooltip(ele,html) {
+  let tip = document.createElement('div');
+  tip.className = "sc--tooltip";
+  tip.innerHTML = html;
+  document.body.append(tip);
+  positionAt(ele,"top",tip);
+  ele.onmouseout=()=>{tip.remove()};
+}
+</script>
+{{- end -}}
+{{- if .HasShortcode "timer" -}}
+<script>
+/**
+  * Run TickTimer in elem id innerHTML
+  *
+  * @param {String} id      Elem id name
+  * @param {string} time    UTC vaild time string
+  * @param {String} format  See 'fmtTime()'
+  *
+  */
+function runTickTimer(id,time,format) {
+  let elem = document.getElementById(id);
+  let nowTime = Date.now();
+  let specTime = Date.parse(time);
+  if (isNaN(specTime)) {
+     elem.innerHTML = specTime;
+     return;
+  }
+  let diffTime = nowTime - specTime;
+  let dtime = humanrTimeSplit(diffTime);
+  elem.innerHTML= fmtTime(dtime,format);
+}
+function fmtTime(dtime,format) {
+  let ret = format;
+  ret = ret.replace('%y', pad0(3,dtime.year));
+  ret = ret.replace('%d', pad0(3,dtime.day));
+  ret = ret.replace('%h', pad0(2,dtime.hour));
+  ret = ret.replace('%m', pad0(2,dtime.min));
+  ret = ret.replace('%s', pad0(2,dtime.sec));
+  ret = ret.replace('%e', pad0(3,dtime.msec));
+  return ret;
+}
+function pad0(z,num) {
+  let nstr = num.toString();
+  let nlen = nstr.length;
+  for (let i=nlen;i<z;i++) {
+    nstr = '0' + nstr;
+  }
+  return nstr;
+}
+function humanrTimeSplit(t) {
+  let ms = Math.abs(t);
+  let s1 = 1000;
+  let m1 = s1* 60;
+  let h1 = m1* 60;
+  let d1 = h1* 24;
+  let y1 = d1* 365;
+  let yy = Math.floor(ms/y1);ms = ms-yy*y1;
+  let dd = Math.floor(ms/d1);ms = ms-dd*d1;
+  let hh = Math.floor(ms/h1);ms = ms-hh*h1;
+  let mm = Math.floor(ms/m1);ms = ms-mm*m1;
+  let ss = Math.floor(ms/s1);ms = ms-ss*s1;
+  return { year:yy, day:dd, hour:hh, min:mm, sec:ss, msec:ms }
+}
+</script>
+{{- end -}}
+{{- if .HasShortcode "fold" -}}
+<script>
+function toggleFold(elem) { elem.parentNode.childNodes.forEach(i=>i.classList.toggle('hide')); }
+</script>
+{{- end -}}

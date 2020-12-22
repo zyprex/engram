@@ -1,0 +1,4 @@
+<mark style="color:{{.Get "fg" | default "default"}};
+ background: {{.Get "bg" | default "transparent"}} linear-gradient({{.Get "hl" | default "#ffe200"}}, {{.Get "hl" | default "#ffe200"}}) no-repeat;
+ background-position: 0 85%;
+ background-size: 100% 25%;">{{- .Inner -}}</mark>

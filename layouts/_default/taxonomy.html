@@ -1,0 +1,11 @@
+{{- define "title" }}{{ .Title }} · {{ .Site.Title }}{{ end -}}
+{{- define "main" -}}
+<div class="mbox shadow">
+    {{- range .Data.Terms.Alphabetical -}}
+    <div style="background-color:#eeeeee10;"><a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>{{ .Count }}</div>
+      {{ range .Pages }}
+      <li><a style="background-color:;" href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    {{- end -}}
+</div>
+{{- end -}}

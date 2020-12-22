@@ -1,0 +1,48 @@
+{{ define "main" }}
+{{- range .Paginator.Pages -}}
+<article class="mbox card shadow"
+  onmouseover="previewbgImg(this, {{ .Page.Params.backgroundImage }})"
+  onmouseout="this.style.backgroundImage=''">
+  <div class="card-title">
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{- if .Draft }}<sup style="color:red;">(draft)</sup>{{- end }}
+  </div>
+  <div class="card-desc">
+    <!-- hexo compatible -->
+    {{- if .Params.excerpt }}{{- .Params.excerpt -}}
+    {{- else if .Params.description }}{{- .Description -}}
+    {{- else }}&nbsp;{{- end }}
+  </div>
+  <div class="card-date tr">
+    {{ .PublishDate.Format "2006 Jan. 02" }}
+  </div>
+  <div class="card-taxo tr">
+    {{- partial "index_taxo.html" . -}}
+  </div>
+</article>
+{{- end -}}
+{{- if gt .Paginator.TotalPages 1 -}}
+<div class="mbox paginator tc flex">
+  <button>
+  {{- if .Paginator.HasPrev -}}
+  <a class="" href="{{ .Paginator.Prev.URL }}" >Prev</a>
+  {{ else }} Prev {{- end -}}
+  </button>
+  <button>{{ .Paginator.PageNumber }}/{{ .Paginator.TotalPages}}</button>
+  <button>
+  {{- if .Paginator.HasNext -}}
+  <a class="" href="{{ .Paginator.Next.URL }}" >Next</a>
+  {{ else }} Next {{- end -}}
+  </button>
+</div>
+{{- end -}}
+<div class="mbox" style="margin-top:25px;">
+{{- range .Data.Pages -}}
+  <div style="padding:initial;margin:5px 0;">
+  {{- if .IsPage -}}📄{{else}}📁{{- end -}}
+  <a href="{{.RelPermalink}}">{{ .Title }}</a>
+  {{- if not .IsPage -}}&#47;{{- end -}}
+  </div>
+{{- end }}
+</div>
+{{ end }}

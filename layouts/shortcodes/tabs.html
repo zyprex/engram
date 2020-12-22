@@ -1,0 +1,26 @@
+{{ $half := div (add (len .Params) 1) 2 }}
+{{ $id := .Get 0 }}
+{{range seq $half}}
+<style>
+.ttit-{{$id}}:checked:nth-of-type({{.}}) ~ .tcon-{{$id}}:nth-of-type({{.}}) {
+  z-index: 0;
+  opacity: 1;
+  height: auto;
+  padding: 12px 15px;
+}
+</style>
+{{ end }}
+<div class="sc--tabs">
+  {{ range $index,$value := .Params }}
+    {{ if eq $index 0 }}
+    {{ else if eq $index 1 }}
+    <input type="radio" name="tabGroup-{{$id}}" class="hide sc--tab ttit-{{$id}}" id="tab1-{{$id}}" checked>
+    <label class="a-c" for="tab1-{{$id}}">{{$value}}</label>
+    {{ else if  lt $index $half }}
+    <input type="radio" name="tabGroup-{{$id}}" class="hide sc--tab ttit-{{$id}}" id="tab{{$index}}-{{$id}}" >
+    <label class="a-c" for="tab{{$index}}-{{$id}}">{{$value}}</label>
+    {{ else }}
+    <div class="sc--tab-x tcon-{{$id}}">{{$value | markdownify}}</div>
+    {{ end }}
+  {{ end }}
+</div>

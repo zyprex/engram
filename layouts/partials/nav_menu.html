@@ -1,0 +1,40 @@
+<nav id="nav_menu" class="bbox">
+<div class="nav-sect">
+  <button class="th-btn" onclick="localStorage.clear();location.reload();">⭕reset</button>
+  <div class="th-btn bold"> 🎨 colors </div>
+  <div id="color_mod_btn">
+    <button data-src="/css/light.css">☀️ Light</button>
+    <button data-src="/css/dark.css">🌙 Dark</button>
+    <button data-src="/css/peach.css">🍑 Peach</button>
+    <button data-src="/css/rain.css">💧 Rain</button>
+    <button data-src="/css/leaf.css">🍃 Leaf</button>
+  </div>
+  {{ with $.Site.Params.backgroundImage }}
+  <div class="th-btn"> 👁 view </div>
+  <div id="view_mod_btn">
+    <button>🛴 fancy</button>
+    <button>🏍 balance</button>
+    <button>🚀 fast</button>
+  </div>
+  {{ end }}
+</div>
+<div id="nav_menu_name">Themes</div>
+<div class="nav-sect">
+  {{- range .Sites.First.Home.Pages -}}
+  <div class="nav-p">
+    <a href="{{.RelPermalink}}">{{ .Title }}</a><sub><small>{{ .Kind }}</small></sub>
+  </div>
+  {{- end }}
+</div>
+<div id="nav_menu_name">Site</div>
+{{- range $taxonomy_term, $taxonomy := .Site.Taxonomies }}
+<div class="nav-sect">
+  {{- range $key, $value := $taxonomy -}}
+  <div class="nav-p">
+    <a href="/{{ $taxonomy_term }}/{{ $key }}">{{ $key }}<sup>{{ len $value }}</sup></a>
+    </div>
+  {{- end -}}
+</div>
+<div id="nav_menu_name"><sup>{{ len $taxonomy }}</sup>&nbsp;{{ $taxonomy_term }}</div>
+{{- end }}
+</nav>
