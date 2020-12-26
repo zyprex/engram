@@ -3,12 +3,9 @@
 {{ with $.Site.Params.favicon }}<link rel="icon" type="image/png" href="{{$.Site.Params.favicon}}">{{ end }}
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Livvic">
-<link rel="stylesheet" type="text/css" href="/css/dark.css" id="theme_var">
 <link rel="stylesheet" type="text/css" href="/css/!.css">
-<script>
-  let pTh = localStorage.getItem('themeVar');
-  theme_var.href = pTh === null ? "/css/dark.css" : pTh;
-</script>
+<link rel="stylesheet" type="text/css" href="" id="theme_var">
+<script async type="text/javascript" href="/js/th.js"></script>
 {{ with $.Site.Params.backgroundImage }}
   {{ with $.Params.backgroundImage }}
   <link rel="stylesheet" type="text/css" href="/css/bgtr.css" id="bg_img" data-bg="{{ $.Params.backgroundImage }}">
