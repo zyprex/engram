@@ -3,8 +3,8 @@
 {{ with $.Site.Params.favicon }}<link rel="icon" type="image/png" href="{{$.Site.Params.favicon}}">{{ end }}
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Livvic">
-<link rel="stylesheet" type="text/css" href="/css/!.css">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" id="theme_var">
+<link rel="stylesheet" type="text/css" href="/css/!.css">
 <script>
   let pTh = localStorage.getItem('themeVar');
   theme_var.href = pTh === null ? "/css/dark.css" : pTh;
