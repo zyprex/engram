@@ -1,11 +1,15 @@
 <meta charset="UTF-8">
 {{ hugo.Generator }}
-{{ with $.Site.Params.favicon }}<link rel="icon" type="image/png" href="{{$.Site.Params.favicon}}">{{ end }}
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Livvic">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="stylesheet" type="text/css" href="/css/!.css">
 <link rel="stylesheet" type="text/css" href="" id="theme_var">
-<script async type="text/javascript" src="/js/th.js"></script>
+<script>
+//const start = new Date(); while(new Date() - start < 1000) {}
+let pTh = localStorage.getItem('themeVar');
+theme_var.href = pTh === null ? "/css/dark.css" : pTh;
+</script>
+{{ with $.Site.Params.favicon }}<link rel="icon" type="image/png" href="{{$.Site.Params.favicon}}">{{ end }}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Livvic">
 {{ with $.Site.Params.backgroundImage }}
   {{ with $.Params.backgroundImage }}
   <link rel="stylesheet" type="text/css" href="/css/bgtr.css" id="bg_img" data-bg="{{ $.Params.backgroundImage }}">

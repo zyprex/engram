@@ -6,7 +6,7 @@
   <body>
     {{- block "header" . }}{{- partial "header.html" . -}}{{- end }}
     <div id="content">
-      {{- block "main" . }}{{- end }}
+      {{- block "main" . -}}{{- end -}}
     </div>
     {{- partialCached "nav_bottom.html" . -}}
     {{- partialCached "nav_menu.html" . -}}
