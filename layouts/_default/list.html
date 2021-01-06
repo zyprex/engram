@@ -2,14 +2,16 @@
 {{- define "main" }}
 <div class="mbox shadow">
   {{- range .Data.Pages.GroupByDate "2006" }}
-    <div class="tr" style="font-weight:800;"> {{ .Key }} </div>
-    {{- range .Pages }}
+  {{- if gt .Key 1 -}}
+  <div class="tr" style="font-weight:800;"> {{ .Key }} </div>
+  {{- end -}}
+    {{- range where .Pages "Kind" "page" -}}
     <div class="flex">
       <a href="{{.Permalink}}">{{ .Title }}</a>
       <div class="push"></div>
       {{ .PublishDate.Format "Jan. 02" }}
     </div>
-    {{ end }}
-  {{ end }}
+    {{- end -}}
+  {{- end -}}
 </div>
-{{- end }}
+{{- end -}}

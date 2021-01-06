@@ -3,13 +3,13 @@
 <div class="mbox shadow">
   {{- range .Data.Pages.GroupByDate "2006" }}
     <div class="tr" style="font-weight:800;"> {{ .Key }} </div>
-    {{- range .Pages }}
+    {{- range .Pages -}}
     <div class="flex">
       <a href="{{.Permalink}}">{{ .Title }}</a>
       <div class="push"></div>
       {{ .PublishDate.Format "Jan. 02" }}
     </div>
-    {{ end }}
+    {{- end -}}
   {{ end }}
 </div>
 {{- end }}
