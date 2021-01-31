@@ -1,0 +1,43 @@
+newContentEditor = "vim"
+languageCode = "en-us"
+baseURL = "/"
+title = "Zyprex's Blog"
+theme = "Engram"
+paginate = 10
+summaryLength = 200
+hasCJKLanguage = true
+enableEmoji=true
+minify = true
+
+[params]
+    author = "zyprex"
+    description = "Zyprex's Awesome Hugo Site"
+    avatar = "/img/git_face.png"
+    favicon = "/img/git_face.png"
+    backgroundImage = "/img/default.jpg"
+
+[markup.goldmark.renderer]
+    unsafe= true
+
+[markup.tableOfContents]
+    startLevel = 1
+    endLevel = 6
+    ordered = false
+
+[markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = true
+    style = "monokai"
+    tabWidth = 2
+
+[frontmatter]
+   lastmod = ["lastmod", ":fileModTime", ":default"]
+   date = [":filename", ":default"]
+
